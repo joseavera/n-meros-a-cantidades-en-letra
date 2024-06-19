@@ -1,0 +1,96 @@
+#include <iostream>
+#include <string>
+
+std::string numeroEnLetras(int n) {
+    if (n == 0) return "cero";
+
+    std::string resultado = "";
+    if (n >= 1000000) {
+        int millones = n / 1000000;
+        n %= 1000000;
+        if (millones == 1) {
+            resultado += "un millón ";
+        } else {
+            resultado += numeroEnLetras(millones) + " millones ";
+        }
+    }
+    if (n >= 1000) {
+        int miles = n / 1000;
+        n %= 1000;
+        if (miles == 1) {
+            resultado += "mil ";
+        } else {
+            resultado += numeroEnLetras(miles) + " mil ";
+        }
+    }
+    if (n >= 100) {
+        int centenas = n / 100;
+        n %= 100;
+        switch (centenas) {
+            case 1: resultado += (n == 0) ? "cien " : "ciento "; break;
+            case 2: resultado += "doscientos "; break;
+            case 3: resultado += "trescientos "; break;
+            case 4: resultado += "cuatrocientos "; break;
+            case 5: resultado += "quinientos "; break;
+            case 6: resultado += "seiscientos "; break;
+            case 7: resultado += "setecientos "; break;
+            case 8: resultado += "ochocientos "; break;
+            case 9: resultado += "novecientos "; break;
+        }
+    }
+    if (n >= 20) {
+        int decenas = n / 10;
+        n %= 10;
+        switch (decenas) {
+            case 2: resultado += "veinte"; break;
+            case 3: resultado += "treinta"; break;
+            case 4: resultado += "cuarenta"; break;
+            case 5: resultado += "cincuenta"; break;
+            case 6: resultado += "sesenta"; break;
+            case 7: resultado += "setenta"; break;
+            case 8: resultado += "ochenta"; break;
+            case 9: resultado += "noventa"; break;
+        }
+        if (n > 0) resultado += " y ";
+    }
+    if (n >= 10) {
+        switch (n) {
+            case 10: resultado += "diez"; break;
+            case 11: resultado += "once"; break;
+            case 12: resultado += "doce"; break;
+            case 13: resultado += "trece"; break;
+            case 14: resultado += "catorce"; break;
+            case 15: resultado += "quince"; break;
+            case 16: resultado += "dieciséis"; break;
+            case 17: resultado += "diecisiete"; break;
+            case 18: resultado += "dieciocho"; break;
+            case 19: resultado += "diecinueve"; break;
+        }
+    } else {
+        switch (n) {
+            case 1: resultado += "uno"; break;
+            case 2: resultado += "dos"; break;
+            case 3: resultado += "tres"; break;
+            case 4: resultado += "cuatro"; break;
+            case 5: resultado += "cinco"; break;
+            case 6: resultado += "seis"; break;
+            case 7: resultado += "siete"; break;
+            case 8: resultado += "ocho"; break;
+            case 9: resultado += "nueve"; break;
+        }
+    }
+
+    return resultado;
+}
+
+int main() {
+    int numero;
+
+    std::cout << "Ingrese un número entre 0 y 999,999,999: ";
+    std::cin >> numero;
+
+    std::string resultado = numeroEnLetras(numero);
+    std::cout << "El número en palabras es: " << resultado << std::endl;
+
+    return 0;
+}
